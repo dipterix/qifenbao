@@ -4,9 +4,9 @@
 # --- !Ups
 
 create table article (
-  id                        bigint not null,
-  last_edited               timestamp,
-  created                   timestamp,
+  id                        bigint auto_increment not null,
+  last_edited               datetime,
+  created                   datetime,
   permissons                varchar(255),
   title                     varchar(255),
   content                   TEXT,
@@ -16,18 +16,18 @@ create table article (
 ;
 
 create table comment (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   email                     varchar(255),
   name                      varchar(255),
   content                   varchar(255),
-  created                   timestamp,
+  created                   datetime,
   oo                        bigint,
   xx                        bigint,
   constraint pk_comment primary key (id))
 ;
 
 create table linked_account (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   user_id                   bigint,
   provider_user_id          varchar(255),
   provider_key              varchar(255),
@@ -35,7 +35,7 @@ create table linked_account (
 ;
 
 create table notifications (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   value                     varchar(255),
   status                    integer,
   type                      integer,
@@ -45,65 +45,65 @@ create table notifications (
 ;
 
 create table section (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   alias                     varchar(255),
   constraint pk_section primary key (id))
 ;
 
 create table security_role (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   role_name                 varchar(255),
   constraint pk_security_role primary key (id))
 ;
 
 create table tag (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   alias                     varchar(255),
   constraint pk_tag primary key (id))
 ;
 
 create table temprorary_user (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   email                     varchar(255),
   name                      varchar(255),
   constraint pk_temprorary_user primary key (id))
 ;
 
 create table token_action (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   token                     varchar(255),
   target_user_id            bigint,
   type                      varchar(2),
-  created                   timestamp,
-  expires                   timestamp,
+  created                   datetime,
+  expires                   datetime,
   constraint ck_token_action_type check (type in ('PR','EV')),
   constraint uq_token_action_token unique (token),
   constraint pk_token_action primary key (id))
 ;
 
 create table users (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   email                     varchar(255),
   name                      varchar(255),
   first_name                varchar(255),
   last_name                 varchar(255),
-  last_login                timestamp,
-  active                    boolean,
-  email_validated           boolean,
+  last_login                datetime,
+  active                    tinyint(1) default 0,
+  email_validated           tinyint(1) default 0,
   PROFILE_ID                bigint,
   constraint pk_users primary key (id))
 ;
 
 create table user_permission (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   value                     varchar(255),
   constraint pk_user_permission primary key (id))
 ;
 
 create table user_profile (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   visibility                integer,
   constraint ck_user_profile_visibility check (visibility in (0,1,2)),
   constraint pk_user_profile primary key (id))
@@ -169,30 +169,6 @@ create table user_profile_notifications (
   notifications_id               bigint not null,
   constraint pk_user_profile_notifications primary key (user_profile_id, notifications_id))
 ;
-create sequence article_seq;
-
-create sequence comment_seq;
-
-create sequence linked_account_seq;
-
-create sequence notifications_seq;
-
-create sequence section_seq;
-
-create sequence security_role_seq;
-
-create sequence tag_seq;
-
-create sequence temprorary_user_seq;
-
-create sequence token_action_seq;
-
-create sequence users_seq;
-
-create sequence user_permission_seq;
-
-create sequence user_profile_seq;
-
 alter table linked_account add constraint fk_linked_account_user_1 foreign key (user_id) references users (id) on delete restrict on update restrict;
 create index ix_linked_account_user_1 on linked_account (user_id);
 alter table token_action add constraint fk_token_action_targetUser_2 foreign key (target_user_id) references users (id) on delete restrict on update restrict;
@@ -220,11 +196,11 @@ alter table section_tag add constraint fk_section_tag_tag_02 foreign key (tag_id
 
 alter table users_security_role add constraint fk_users_security_role_users_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
 
-alter table users_security_role add constraint fk_users_security_role_securi_02 foreign key (security_role_id) references security_role (id) on delete restrict on update restrict;
+alter table users_security_role add constraint fk_users_security_role_security_role_02 foreign key (security_role_id) references security_role (id) on delete restrict on update restrict;
 
-alter table users_user_permission add constraint fk_users_user_permission_user_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
+alter table users_user_permission add constraint fk_users_user_permission_users_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
 
-alter table users_user_permission add constraint fk_users_user_permission_user_02 foreign key (user_permission_id) references user_permission (id) on delete restrict on update restrict;
+alter table users_user_permission add constraint fk_users_user_permission_user_permission_02 foreign key (user_permission_id) references user_permission (id) on delete restrict on update restrict;
 
 alter table editor_section add constraint fk_editor_section_users_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
 
@@ -234,85 +210,61 @@ alter table manager_section add constraint fk_manager_section_users_01 foreign k
 
 alter table manager_section add constraint fk_manager_section_section_02 foreign key (section_id) references section (id) on delete restrict on update restrict;
 
-alter table user_profile_users add constraint fk_user_profile_users_user_pr_01 foreign key (user_profile_id) references user_profile (id) on delete restrict on update restrict;
+alter table user_profile_users add constraint fk_user_profile_users_user_profile_01 foreign key (user_profile_id) references user_profile (id) on delete restrict on update restrict;
 
 alter table user_profile_users add constraint fk_user_profile_users_users_02 foreign key (users_id) references users (id) on delete restrict on update restrict;
 
-alter table user_profile_notifications add constraint fk_user_profile_notifications_01 foreign key (user_profile_id) references user_profile (id) on delete restrict on update restrict;
+alter table user_profile_notifications add constraint fk_user_profile_notifications_user_profile_01 foreign key (user_profile_id) references user_profile (id) on delete restrict on update restrict;
 
-alter table user_profile_notifications add constraint fk_user_profile_notifications_02 foreign key (notifications_id) references notifications (id) on delete restrict on update restrict;
+alter table user_profile_notifications add constraint fk_user_profile_notifications_notifications_02 foreign key (notifications_id) references notifications (id) on delete restrict on update restrict;
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists article;
+drop table article;
 
-drop table if exists article_users;
+drop table article_users;
 
-drop table if exists article_tag;
+drop table article_tag;
 
-drop table if exists article_comment;
+drop table article_comment;
 
-drop table if exists comment;
+drop table comment;
 
-drop table if exists linked_account;
+drop table linked_account;
 
-drop table if exists notifications;
+drop table notifications;
 
-drop table if exists section;
+drop table section;
 
-drop table if exists section_tag;
+drop table section_tag;
 
-drop table if exists security_role;
+drop table security_role;
 
-drop table if exists tag;
+drop table tag;
 
-drop table if exists temprorary_user;
+drop table temprorary_user;
 
-drop table if exists token_action;
+drop table token_action;
 
-drop table if exists users;
+drop table users;
 
-drop table if exists users_security_role;
+drop table users_security_role;
 
-drop table if exists users_user_permission;
+drop table users_user_permission;
 
-drop table if exists editor_section;
+drop table editor_section;
 
-drop table if exists manager_section;
+drop table manager_section;
 
-drop table if exists user_permission;
+drop table user_permission;
 
-drop table if exists user_profile;
+drop table user_profile;
 
-drop table if exists user_profile_users;
+drop table user_profile_users;
 
-drop table if exists user_profile_notifications;
+drop table user_profile_notifications;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists article_seq;
-
-drop sequence if exists comment_seq;
-
-drop sequence if exists linked_account_seq;
-
-drop sequence if exists notifications_seq;
-
-drop sequence if exists section_seq;
-
-drop sequence if exists security_role_seq;
-
-drop sequence if exists tag_seq;
-
-drop sequence if exists temprorary_user_seq;
-
-drop sequence if exists token_action_seq;
-
-drop sequence if exists users_seq;
-
-drop sequence if exists user_permission_seq;
-
-drop sequence if exists user_profile_seq;
+SET FOREIGN_KEY_CHECKS=1;
 

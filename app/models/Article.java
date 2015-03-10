@@ -26,7 +26,7 @@ import play.mvc.Result;
 @EntityConcurrencyMode(ConcurrencyMode.NONE)
 public class Article extends Model{
 
-	/**
+	/** 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
