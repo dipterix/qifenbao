@@ -1,0 +1,147 @@
+body {
+	background-color: rgb(254, 255, 247);
+	background-size: cover;
+	background-attachment:fixed;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.body-container {
+	background-color: rgb(254, 255, 247);
+	min-height: 1080px;
+	padding-top: 20px;
+	padding-bottom: 50px;
+}
+
+.hline{
+	border-top: 1px solid #1d1d1d;
+	border-bottom: 1px solid #616060;
+	max-height:0;
+}
+
+.left {
+	text-align: left;
+}
+
+.float-right{
+	float: right;
+}
+
+@media (max-width: 991px) {
+	.mobile-hide {
+		display:none !important;
+	}
+	
+	.mobile-hide div {
+		display:none !important;
+	}
+	
+	.mobile-nopadding {
+		padding: 0;
+	}
+	
+	body {
+		background-image: url("../images/brand-home-mobile.jpg");
+	}
+}
+
+@media (min-width: 992px){
+	body {
+		background-image: url("../images/brand-home.jpg");
+	}
+}
+
+#article-preview {
+	min-height: 200px;
+	position: fixed;
+	background-color: rgba(254, 255, 247, 0.9);
+	height: 100%;
+	display: none;
+	top: 0;
+	box-shadow: 0 0 50px #c2c2c2;
+	padding: 15px 10px;
+	overflow: hidden;
+	z-index: 1000;
+}
+
+#article-preview > img {
+	max-width: 200px;
+	width: 100%;
+}
+
+.rocket {
+	height: 100px;
+	text-align: center;
+	color: #c2c2c2;
+	padding-top: 20px;
+	cursor: pointer;
+	background-color: rgb(254, 255, 247);
+	z-index: 2000;
+	position: relative;
+}
+.rocket:hover{
+	color: #828282;
+}
+.rocket > .icon-rocket {
+	font-size: 60px;
+}
+
+.article-index {
+	height: 120px !important;
+	padding: 10px 5px;
+	border-bottom: 1px solid #dedede;
+}
+
+.article-index:hover{
+	-webkit-animation: article_ind_hover 0.4s 1;
+	animation: article_ind_hover 0.4s 1;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes article_ind_hover {
+	100% {
+		box-shadow: 0 0 50px #c2c2c2;
+	}
+}
+@keyframes article_ind_hover {
+	100% {
+		box-shadow: 0 0 50px #c2c2c2;
+	}
+}
+
+.article-list {
+	border: 1px solid #dedede;
+	border-bottom: transparent;
+}
+
+.article-thumb {
+	width: 180px;
+	height: 100px;
+	float: left;
+}
+
+.article-thumb > img{
+	width: 175px;
+	height: 98px;
+}
+
+.article-bref {
+	height: 100px;
+	padding-left: 190px;
+	font-size: 13px;
+}
+
+.article-bref > h3{
+	margin: 0;
+	font-size: 16px;
+	font-weight: 900;
+}
+
+.article-bref > h3 > a{
+	color: #aacc77;
+}
+
+.break-word {
+	word-wrap: break-word;
+}

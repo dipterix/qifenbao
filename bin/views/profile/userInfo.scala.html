@@ -1,0 +1,10 @@
+@(
+	target: models.User
+)
+
+@main("Information", "1") {
+	@target.name <br />
+	@target.lastLogin<br />
+	@target.hasPermission(Application.USER_PERMISSION_EDITOR)
+	@target.profile.fans.size
+}

@@ -1,0 +1,171 @@
+@(
+	localUser: models.User = null, 
+	adminList: List[models.User],
+	editorList: List[models.User],
+	queryTarget: List[models.User]
+)
+
+@main(Messages("playauthenticate.navigation.restricted"), "1") {
+    
+    <h1>Admin Tools</h1>
+    <p>
+	    <h2>Administrator List</h2>
+	    
+	    <div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									#
+								</th>
+								<th>
+									Name
+								</th>
+								<th>
+									Email
+								</th>
+								<th>
+									Status
+								</th>
+								<th>
+									Last Login Date
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						@if(adminList != null){
+							@for(u <- adminList){
+						    <tr class="success">
+								<td>
+									@u.id
+								</td>
+								<td>
+								<a href="@routes.AdminTools.editUser(u.id)">
+									@u.name
+								</a>
+								</td>
+								<td>
+									@u.email
+								</td>
+								<td>
+								@for(p <- u.permissions){
+									@p.value
+								}
+								<td>
+									@u.lastLogin
+								</td>
+							</tr>
+							}
+						}
+						@if(editorList != null){
+							@for(u <- editorList){
+						    <tr class="info">
+								<td>
+									@u.id
+								</td>
+								<td>
+									<a href="@routes.AdminTools.editUser(u.id)">
+										@u.name
+									</a>
+								</td>
+								<td>
+									@u.email
+								</td>
+								<td>
+								@for(p <- u.permissions){
+									@p.value
+								}
+								<td>
+									@u.lastLogin
+								</td>
+							</tr>
+							}
+						}
+						@if(queryTarget != null){
+							@for(u <- queryTarget){
+						    <tr class="warning">
+								<td>
+									@u.id
+								</td>
+								<td>
+									<a href="@routes.AdminTools.editUser(u.id)">
+										@u.name
+									</a>
+								</td>
+								<td>
+									@u.email
+								</td>
+								<td>
+								@for(p <- u.permissions){
+									@p.value
+								}
+								<td>
+									@u.lastLogin
+								</td>
+							</tr>
+							}
+						}
+						
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<h2>ID Search</h2>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<form role="form" method="POST" action="@routes.AdminTools.admin(localUser.email)">
+						<div class="form-group col-md-6">
+							 <label for="email">Email Address</label>
+							 <input type="email" class="form-control" id="email" name="email" />
+						</div>
+						<div class="form-group col-md-6">
+							 <label for="name">User Name</label>
+							 <input type="text" class="form-control" id="name" name="name" />
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<h2>Section Management</h2>
+		<div class="container">
+			<div class="row clearfix">				
+				@for(s <- models.Section.find.where().findList()){
+				<div class="col-md-offset-1 col-md-5 column jumbotron" style="font-size:10px">
+					<p>
+						Section: @s.name<br />
+						Editors: <small>
+						@for(editor <- models.User.find.where().eq("managedSections", s).findList()){
+							 @editor.name (@editor.email) 
+						}
+						</small><br />
+						Tags: <small>
+						@for(tags <- s.tags){
+							<span> @tags.name </span> 
+						}</small>
+					</p>
+				</div>
+				}
+			</div>
+		</div>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<form role="form" method="POST" action="@routes.AdminTools.admin(localUser.email)">
+						<div class="form-group col-md-12">
+							 <label for="sections">Add some sections?</label>
+							 <input type="text" class="form-control" id="sections" name="sections" />
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+    </p>
+}

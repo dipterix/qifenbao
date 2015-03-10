@@ -1,0 +1,88 @@
+@(
+	admin: models.User = null,
+	localUser: models.User
+)
+
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapBasic.f) }
+
+@main(Messages("Profile")) {
+
+
+
+
+
+
+@if(admin != null){
+	<h1>localUser.name</h1>
+	<div class="row clearfix">
+	form(routes.Account.doEditProfile, 'class -> "form", 'role -> "form") {
+		
+		<div class="form-group hidden">
+			<label for="id">User ID: </label>
+			<input type="text" id="id" name="id" class="form-control" value="localUser.id"/>
+		</div>
+		<div class="form-group">
+			<label for="permissions">Permissions: </label>
+			(
+				for(p <- localUser.permissions){
+					p.value.
+				}
+			)
+	        if(admin != null){
+	       		<input type="text" id="permissions" name="permissions" class="form-control" 
+	       			placeholder="normal, editor, etc. To remove a permission enter the permission again." />
+	       		Choices: 
+		        for(per <- UserPermission.find.all()){
+		        	per.value, 
+		        }
+		        etc.
+	        }
+	    </div>
+	    
+	    
+	    <div class="form-group">
+			<label for="sections">Sections: </label>
+			(
+			for(s <- localUser.managedSections){
+				s.name.
+			
+	        
+	        )
+	       	<input type="text" id="sections" name="sections" class="form-control" 
+	       		placeholder="Same as above, use ',' to separate." />
+	    </div>
+	    }
+
+		if(localUser.hasPermission(Application.USER_PERMISSION_SECTION_MANAGER) ||
+		    localUser.hasPermission(Application.USER_PERMISSION_EDITOR)
+		){
+		<div class="col-md-12">
+			<!-- TAGS!!! -->
+			Sections:<br />
+			
+		    	for(sect <- localUser.managedSections){
+		    	<div class="col-md-offset-1 col-md-5 jumbotron" style="font-size:10px">
+		    		<h4>Section name: sect.name.</h4><br />
+		    		Available Tags: for(tgs <- sect.tags){
+		    			<span> tgs.name </span>
+		    		}
+		    	</div>
+		    	}
+		    	
+		</div>
+		}
+		if(localUser.hasPermission(Application.USER_PERMISSION_SECTION_MANAGER)){
+	    You are section administrator<br />
+	    <div class="form-group">
+	    	<label>Want create some tags?</label>
+	    	<input type="text" id="subSections" name="subSections" class="form-control" 
+	       			placeholder="Enter tags using ',' to separate." />
+	    </div>
+	    }
+	    
+    	<button type="submit" class="btn btn-default">Confirm</button>
+	}
+	</div>
+}
+}

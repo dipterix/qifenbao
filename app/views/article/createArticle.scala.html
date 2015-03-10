@@ -1,0 +1,31 @@
+@(localUser: 
+	models.User = null, 
+	articleForm: Form[models.Article] = null
+)
+
+@import article._
+@import manage._
+
+@main(Messages("article.edit.title")) {
+	<div class="row">
+    <div class="col-xs-6 col-sm-4">
+      <h2>@Messages("article.edit.title")</h2>
+    </div>
+  </div>
+
+
+<div class="row clearfix">
+	<div class="col-md-offset-1 col-md-8 column mobile-nopadding">
+		<div class="article-content">
+			 @* Article form *@
+	      @helper.form(routes.Articles.doCreateArticle, 'class -> "form-horizontal", 'role -> "form") {
+		      @_articleEditPartial(localUser, articleForm)
+		  }
+		</div>
+	</div>
+	<div class="col-md-3 column break-word">
+		@_sidebar()
+	</div>
+</div>
+
+}

@@ -1,0 +1,37 @@
+.article-content {
+	border: 1px solid #dedede;
+}
+
+.article-content p {
+	padding-bottom: 10px;
+}
+
+.article-content img {
+	max-width: 100%;
+}
+
+.article-content embed {
+	max-width: 100%;
+}
+
+.article-content article {
+	padding: 15px 10px;
+}
+
+.article-content aside > div {
+	padding: 10px;
+	margin: 0;
+	border-bottom: 1px solid #dedede;
+}
+
+.article-content .comment-header {
+	background-color: #ddd;
+}
+
+.article-content .comment-content {
+	min-height: 20px;
+}
+
+.article-content .comment-content .comment-ooxx{
+	text-align: right;
+}

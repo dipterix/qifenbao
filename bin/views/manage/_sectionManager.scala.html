@@ -1,0 +1,54 @@
+@(
+	localUser: models.User = null
+)
+
+<div class="page-header" data-target="section-manager-panel">
+	<h3>
+		@localUser.name <small>版主，今天要加菜还是加line :D</small>
+	</h3>
+</div>
+
+<div id="section-manager-panel">
+@for(section <- localUser.masterSections){
+	<div style="border-bottom:1px solid #c2c2c2">
+		<h4><small>版名: </small>
+			<a href="@routes.Profiles.sectionsInfo(section.name)" target="_blank">@section.alias</a>
+		</h4><br />
+		
+		<blockquote>
+			<h3><small>标签:</small></h3>
+			<ul class="nav nav-pills">
+				@for(tag <- section.tags){
+					<li>
+						<a href="@routes.Profiles.tagsInfo(tag.name,1)" target="_blank"> 
+							<span class="badge pull-right"></span> @tag.alias (@tag.name)
+						</a>
+					</li>
+				}
+			</ul>
+			<h3><small>编辑:</small></h3>
+			<ul class="nav nav-pills">
+				@for(editor <- section.getEditors()){
+					<li>
+						<a href="@routes.Profiles.editorInfo(editor.name)" target="_blank"> 
+							<span class="badge pull-right"></span> @editor.name
+						</a>
+					</li>
+				}
+			</ul>
+			<h3><small>鹳狸猿:</small></h3>
+			<ul class="nav nav-pills">
+				@for(manager <- section.getManagers()){
+					<li>
+						<a href="@routes.Profiles.editorInfo(manager.name)" target="_blank"> 
+							<span class="badge pull-right"></span> @manager.name
+						</a>
+					</li>
+				}
+			</ul>
+			
+		</blockquote>
+	</div>
+	
+}
+</div>
