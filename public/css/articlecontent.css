@@ -1,0 +1,67 @@
+.article-content{
+	padding: 5px;
+}
+
+.article-content div {
+	word-break: break-all;
+}
+
+article {
+	text-align:justify;
+}
+
+article h1 {
+	font-size: 1.5em;
+	margin-top: 0.7em;
+	margin-bottom: 0;
+}
+
+article small {
+	color: #d2d2d2;
+}
+
+article img {
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+aside .comment-header {
+	background-color: rgba(200,200,200,0.8);
+	padding: 5px;
+	width: 100%;
+}
+
+aside .comment {
+	font-size: 0.9em;
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	min-height: 4em;
+	padding: 5px;
+}
+
+.comment-author {
+	width: 100%;
+}
+.comment-content {
+	min-height: 3em;
+	width: 100%;
+	padding: 10px, 10px 5px 10px;
+}
+.comment-ooxx {
+	width: 100%;
+	text-align: right;
+}
+
+.comment-new input, .comment-new textarea {
+	width: 98%;
+	margin: 1em auto;
+	border: 2px rgba(200,200,200,0.6);
+}
+
+@media all and (min-width: 1000px) {
+	.article-content{
+		padding: 34px;
+	}
+}

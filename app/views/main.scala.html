@@ -8,209 +8,135 @@
 <head>
     <title>@title</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=1366, initial-scale=1">
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Qi Fen Bao">
     <meta name="author" content="Dipterix">
 
-	<!-- Bootstrap -->
-	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-		
-	<!-- Design use -->
-	<link href='@routes.Assets.at("css/general.css")' rel="stylesheet">
-	<link href='@routes.Assets.at("css/header-footer.css")' rel="stylesheet">
-	<link href='@routes.Assets.at("css/article.css")' rel="stylesheet">
-	<link href='@routes.Assets.at("css/icons.css")' rel="stylesheet">
-    <script type="text/javascript" src="@routes.Application.jsRoutes" defer="defer"></script>
+		<!-- Bootstrap --
+		<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+			
+		<!-- Design use --
+		<link href='@routes.Assets.at("css/general.css")' rel="stylesheet">
+		<link href='@routes.Assets.at("css/header-footer.css")' rel="stylesheet">
+		<link href='@routes.Assets.at("css/article.css")' rel="stylesheet">
+		<link href='@routes.Assets.at("css/icons.css")' rel="stylesheet">
+    <script type="text/javascript" src="@routes.Application.jsRoutes" defer="defer"></script -->
+    
+    <link href='@routes.Assets.at("css/layout.css")' rel="stylesheet">
+	  <link href='@routes.Assets.at("css/articlelist.css")' rel="stylesheet">
+	  <link href='@routes.Assets.at("css/articlecontent.css")' rel="stylesheet">
+		<link rel="stylesheet" href='@routes.Assets.at("icons/css/font-awesome.min.css")'>
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
 	
-	@if(title.equals(Messages("article.edit.title"))){
-		<link rel="stylesheet" href='@routes.Assets.at("css/htmleditor/default.css")'>
-		<script charset="utf-8" src='@routes.Assets.at("js/htmleditor/kindeditor-min.js")'></script>
-		<script charset="utf-8" src='@routes.Assets.at("js/htmleditor/zh_CN.js")'></script>
-	}
+		@if(title.equals(Messages("article.edit.title"))){
+			<link rel="stylesheet" href='@routes.Assets.at("css/htmleditor/default.css")'>
+			<script charset="utf-8" src='@routes.Assets.at("js/htmleditor/kindeditor-min.js")'></script>
+			<script charset="utf-8" src='@routes.Assets.at("js/htmleditor/zh_CN.js")'></script>
+		}
 			
         
 </head>
 
 <body>
-	<div class="home-brand">
-		<div class="container">
-			<div class="row clearfix home-brand-header">
-				<div class="col-md-offset-7 col-md-5 home-brand-jumbotron">
-				<form class="brand-form" role="form">
-					<div class="form-group home-brand-form">
-						 <label for="keywords">Search</label><input type="email" class="form-control" id="keywords" />
-					</div>
-				</form>
-				<div class="hline hidden"></div>
-				<div class="home-brand-hotkeys hidden">
-					<span class="label label-default brand-label">健康</span>
-					<span class="label label-default brand-label">饮食</span>
-					<span class="label label-default brand-label">革命本钱</span>
-					<span class="label label-default brand-label">我们要珍惜绳命</span>
-					<span class="label label-default brand-label">绳命是无价的</span>
-					<span class="label label-default brand-label">是的</span>
-					<span class="label label-default brand-label">这是列表</span>
-					<span class="label label-default brand-label">不对</span>
-					<span class="label label-default brand-label">这不是列表</span>
-					<span class="label label-default brand-label">这是关键词</span>
-					<span class="label label-default brand-label">嗯</span>
-					<span class="label label-default brand-label">好的</span>
-					<span class="label label-default brand-label">Yes</span>
-					<span class="label label-default brand-label">Yes你妹啊</span>
-					<span class="label label-default brand-label">应该够了</span>
-					<span class="label label-default brand-label">好烦</span>
-					<span class="label label-default brand-label">才两行</span>
-					<span class="label label-default brand-label">老子要编四行啊</span>
-					<span class="label label-default brand-label">讨厌</span>
-					<span class="label label-default brand-label">还</span>
-					<span class="label label-default brand-label">不如</span>
-					<span class="label label-default brand-label">来一发</span>
-					
-					
-					<a href="#">
-						<span class="label label-default brand-label">xxx</span>
-					</a>
-					<span class="label label-default brand-label">突然</span>
-					<span class="label label-default brand-label">发现字体</span>
-					<span class="label label-default brand-label">要改了</span>
-					<span class="label label-default brand-label">苹果字体</span>
-					<span class="label label-default brand-label">叫做Hiragino</span>
-					<span class="label label-default brand-label">好像是</span>
-					<span class="label label-default brand-label">PC的</span>
-					<span class="label label-default brand-label">就改成</span>
-					<span class="label label-default brand-label">雅黑</span>
-					<span class="label label-default brand-label">哟嘿~~~</span>
-				</div>
-				</div>
-			</div>
-		</div>
-	</div>
-    <nav class="navbar navbar-default navbar-inverse navbar-custom" id="home-nav">
-      <div class="container">
-        <div class="navbar-header">
-			 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-              <div class="navbar-logo">Logo</div>
-        </div>
-
-        <div id="navbar" class="navbar-collapse collapse">
-        	<ul class="nav navbar-nav">
-            	<li class="@("active".when(nav == ""))">
-                	<a href="@routes.Application.index()">@Messages("navigation.home")</a>
-                </li>
-                <li class="@("active".when(nav == "restricted"))">
-                    <a href="@routes.Application.restricted()">@Messages("navigation.self")</a>
-                </li>
-
-				@subjectPresentOr() {
-					@defining(Application.getLocalUser(session())) { user =>
-						@if(user.hasPermission(Application.USER_PERMISSION_EDITOR)){
-							<li class="@("active".when(nav == "editor"))">
-		                        <a href="@routes.Manage.editorPage(1)">@Messages("navigation.editor")</a>
-							</li>
-						}
-						@if(user.hasPermission(Application.USER_PERMISSION_ADMIN)){
-							<li class="@("active".when(nav == "admin"))">
-		                        <a href="@routes.Manage.admin">@Messages("navigation.admin")</a>
-							</li>
-						}
+	<header class="app-bar promote-layer">
+		<button class="menu">
+			<div class="menu-icon"><i class="fa fa-ellipsis-h"></i></div>
+			<div class="close-icon"><i class="fa fa-times"></i></div>
+		</button>
+		<h1 class="logo"><a href="#">Logo</a></h1>
+		<section class="app-bar-actions">
+			<input class="search" placeholder="Search">
+			<button><i class="fa fa-search"></i></button>
+		</section>
+	</header>
+	
+	<nav class="navdrawer-container">
+		<div>
+		<ul class="promote-layer">
+			<li class="@("active".when(nav == ""))">
+      	<a href="@routes.Application.index()"><i class="fa fa-home"></i> @Messages("navigation.home")</a>
+      </li>
+      <li class="@("active".when(nav == "restricted"))">
+      	<a href="@routes.Application.restricted()"><i class="fa fa-heart"></i> @Messages("navigation.self")</a>
+      </li>
+			@subjectPresentOr() {
+				@defining(Application.getLocalUser(session())) { user =>
+					@if(user.hasPermission(Application.USER_PERMISSION_EDITOR)){
+						<li class="@("active".when(nav == "editor"))">
+		          <a href="@routes.Manage.editorPage(1)"><i class="fa fa-pencil-square-o"></i> @Messages("navigation.editor")</a>
+						</li>
 					}
-				}{
-                	<li class="@("active".when(nav == "signup"))">
-                    	<a href="@routes.Application.signup()">@Messages("navigation.signup")</a>
-                    </li>
+					@if(user.hasPermission(Application.USER_PERMISSION_ADMIN)){
+						<li class="@("active".when(nav == "admin"))">
+		           <a href="@routes.Manage.admin"><i class="fa fa-user"></i> @Messages("navigation.admin")</a>
+						</li>
+					}
 				}
-			</ul>
-
-            @subjectPresentOr() {
-            	@defining(Application.getLocalUser(session())) { user =>
-                	<ul class="nav navbar-nav navbar-right">
-                    	<li class="dropdown">
-                        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            	<i class="glyphicon glyphicon-user"></i> @user.name <span class="caret"></span>
+			} {
+      	<li class="@("active".when(nav == "signup"))">
+        	<a href="@routes.Application.signup()">@Messages("navigation.signup")</a>
+        </li>
+			}
+		</ul>
+		</div>
+		<div class="navdrawer-float-right">
+			<ul class="promote-layer">
+				@subjectPresentOr() {
+		     	@defining(Application.getLocalUser(session())) { user =>
+	         	<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="glyphicon glyphicon-user"></i> @user.name <span class="caret"></span>
 							</a>
-                            <ul class="dropdown-menu" role="menu">
-                            	<li class="@("active".when(nav == "profile"))">
-                                	<a href="@routes.Application.profile()">
-                                    @Messages("navigation.profile")
-                                    </a>
-								</li>
-                                <li class="divider"></li>
-                                <li><a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout()"><i class="icon-off"></i>
-                                	@Messages("navigation.logout")</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                }
-                        
-             } {
-             	<a href="@routes.Application.login()" class=" navbar-right btn btn-default navbar-btn @("disabled".when(nav == "login"))">
-                	@Messages("navigation.login")
-				</a>
-             }
-
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
+							<li>
+               	<a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout()"><i class="icon-off"></i>
+               	@Messages("navigation.logout")</a>
+							</li>
+						</li>
+		        }
+		      } {
+	      	<li>
+	      		<a href="@routes.Application.login()" class=" navbar-right @("disabled".when(nav == "login"))">
+	        		@Messages("navigation.login")
+						</a>
+					</li>
+      	}
+      </ul>
+		</div>
 	</nav>
+	
+	
+	<div class="navdrawer-bg promote-layer"></div>
 
 	<!-- Content -->
-	<div class="body-container">
-	<div class="container">
-    	@if(flash.contains(Application.FLASH_ERROR_KEY)) {
-        	<div class="alert alert-danger" role="alert">
-            	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">
-                        Close</span></button>
-                @flash().get(Application.FLASH_ERROR_KEY)
-			</div>
-		}
-        @if(flash.contains(Application.FLASH_MESSAGE_KEY)) {
-			<div class="alert alert-success" role="alert">
-            	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">
-                        Close</span></button>
-                @flash().get(Application.FLASH_MESSAGE_KEY)
-			</div>
-		}
+	<section class="main-content">
+		<div class="container">
+				    	@if(flash.contains(Application.FLASH_ERROR_KEY)) {
+				        	<div class="alert alert-danger" role="alert">
+				                @flash().get(Application.FLASH_ERROR_KEY)
+							</div>
+						}
+				        @if(flash.contains(Application.FLASH_MESSAGE_KEY)) {
+							<div class="alert alert-success" role="alert">
+				                @flash().get(Application.FLASH_MESSAGE_KEY)
+							</div>
+						}
+		
         @content
-
-		<hr>
-	</div> <!-- /container -->
-    </div>
-    <div class="footer">
-		<div class="container">
-			<div class="row clearfix">
-				<div class="col-md-offset-2 col-md-8 column">
-					<div class="row clearfix">
-						<div class="col-xs-3 column">
-							<img alt="DreamBig QR Code" style="max-width:125px;width:100%" src='@routes.Assets.at("images/qrcode.jpg")' />
-						</div>
-						<div class="col-md-offset-1 col-xs-8 column left">
-							 <address> 
-								<strong>七分饱</strong><br>
-								台北路建设大道<br> 
-								广告投放 . 联系我们<br> 
-								<abbr>电话:</abbr> (123) 456-7890<br>
-								QQ: 12345678<br>
-							 </address>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
-		<div class = "hline"></div>
-		<div class="container">
-			COPYRIGHT© 1998-2013. ALL RIGHTS RESERVED.
-		</div>
-  	</div>
+	</section>
+	<section class="bottom-bar">
+		<button class="go-top"><i class="fa fa-rocket"></i></button>
+		<button class="go-prev"><i class="fa fa-chevron-left"></i></button>
+		<button class="go-next"><i class="fa fa-chevron-right"></i></button>
+	</section>
+	
+	<footer>
+		COPYRIGHT© 1998-2013. ALL RIGHTS RESERVED.
+ 	</footer>
   	
   	
   	

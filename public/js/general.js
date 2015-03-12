@@ -1,11 +1,41 @@
 /*
 	General JS for all sites
 */
+/*********************************************
+Responsive setting
+**********************************************/
++function(){
+	var navdrawerContainer = document.querySelector('.navdrawer-container');
+      var appbarElement = document.querySelector('.app-bar');
+      var darkbgElement = document.querySelector('.navdrawer-bg');
+      var menuBtn = document.querySelector('.menu');
+      menuBtn.addEventListener('click', function() {
+        var isOpen = navdrawerContainer.classList.contains('open');
+        if(isOpen) {
+          appbarElement.classList.remove('open');
+          navdrawerContainer.classList.remove('open');
+          darkbgElement.classList.remove('open');
+        } else {
+          appbarElement.classList.add('open');
+          navdrawerContainer.classList.add('open');
+          darkbgElement.classList.add('open');
+        }
+      }, true);
+	  var navdrawerBg = document.querySelector('.navdrawer-bg');
+	  navdrawerBg.addEventListener('click', function(){
+		var isOpen = navdrawerBg.classList.contains('open');
+		if(isOpen){
+		  appbarElement.classList.remove('open');
+          navdrawerContainer.classList.remove('open');
+          darkbgElement.classList.remove('open');
+		}
+	  })
+}();
 
 /*********************************************
 Stores client dimension info (client width & height)
-**********************************************/
-+function($){
+**********************************************
+function($){
 	var getWindowSize = function(){
 		var myWidth = 0, myHeight = 0;
 		  if( typeof( window.innerWidth ) == 'number' ) {
@@ -39,15 +69,15 @@ Stores client dimension info (client width & height)
 	
 	$(window).resize(store_dim);
 	$(document).ready(store_dim);
- }(jQuery);
+ }
 
  
  
  
 /*********************************************
 defined default actions of elements
-**********************************************/
-+function($){
+**********************************************
+function($){
 	var preview_panel = $("#article-preview");
 	
 	// get client dimension
@@ -203,4 +233,6 @@ defined default actions of elements
 			preview_panel.fadeOut();
 		});
 	});
-}(jQuery);
+};
+
+*/

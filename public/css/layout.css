@@ -1,0 +1,655 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: 'Hiragino Sans GB W3', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+	font-weight: 300;
+	/*background-image: url('unsplash-img-1.jpg');*/
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment:fixed;
+	background-position: center;
+	background-color: rgb(254, 255, 247);
+	box-sizing: border-box;
+	/*overflow: hidden;*/
+}
+a {
+	text-decoration: none;
+}
+.hidden {
+	display: none;
+	visibility: none;
+}
+.app-bar {
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	width: 100%;
+	height: 60px;
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index:2;
+	background-color: rgba(240,240,240,0.6);
+}
+.app-bar.open {
+	-webkit-transform: translate(250px,0);
+	transform: translate(250px,0);
+}
+.app-bar .logo {
+	-ms-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+
+	font-size: 20px;
+	line-height: 60px;
+
+	margin: 0 16px;
+
+	color: rgb(150,150,150);
+	float: none;
+	max-width: none;
+}
+.app-bar .logo a {
+	text-decoration: none;
+	color: inherit;
+	font-weight: normal;
+}
+.app-bar-actions  {
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+}
+.app-bar button, .bottom-bar button {
+	width: 44px;
+	height: 44px;
+
+	background-image: none;
+	background-color: transparent;
+
+	border-style: solid;
+	border-radius: 100%;
+	border-color: rgb(200, 200, 200);
+	padding: 8px;
+	margin: 8px;
+	-webkit-transition: border 300ms ease-in,background 300ms ease-in;
+	transition: border 300ms ease-in,background 300ms ease-in;
+	-webkit-tap-highlight-color: transparent;
+	cursor: pointer;
+	
+	color: rgba(150, 150, 150, 0.8);
+	font-size: 24.3px;
+	font-weight: 100;
+}
+.app-bar button img {
+	width: 28px;
+	height: 28px;
+}
+.app-bar button.menu {
+	position: relative;
+}
+.app-bar button.menu img {
+	position: absolute;
+	top: 7px;
+	left: 7px;
+}
+.app-bar button.menu .menu-icon {
+	opacity: 1.0;
+	display:inline;
+}
+.app-bar button.menu .close-icon {
+	opacity: 0.0;
+	display: none;
+}
+.app-bar.open button.menu .menu-icon {
+	opacity: 0.0;
+	display: none;
+}
+.app-bar.open button.menu .close-icon {
+	opacity: 1.0;
+	display:inline;
+}
+.app-bar button:hover, .bottom-bar button:hover, .app-bar button:focus, .bottom-bar button:focus {
+	border-color: transparent;
+	outline: 0;
+	background-color: rgba(100, 100, 100, 0.4);
+	color: white;
+}
+.app-bar button:active, .bottom-bar button:active {
+	border-color: transparent;
+	background-color: rgba(100, 100, 100, 0.6);
+}
+.search {
+	display: none;
+
+	width: 400px;
+	height: 40px;
+
+	padding: 11px;
+	margin: 8px 0;
+
+	box-sizing: border-box;
+
+	border: none;
+}
+.bottom-bar {
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	width: 100%;
+	height: 60px;
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(240,240,240,0.6);
+}
+@media all and (min-width: 1000px) {
+
+	body {
+		padding: 16px 16px 0 16px;;
+		background-image: url("../images/brand-home.jpg")
+	}
+
+	.app-bar {
+		display: block;
+
+		position: relative;
+		height: 100px;
+
+		padding: 0 16px;
+		margin-bottom: 16px;
+
+		box-sizing: border-box;
+
+		background-color: transparent;
+		-webkit-transform: translate(0,0);
+		transform: translate(0,0);
+		-webkit-transition: none;
+		transition: none;
+	}
+	.app-bar.open {
+		-webkit-transform: translate(0,0);
+		transform: translate(0,0);
+	}
+
+	.app-bar .logo {
+		float: left;
+
+		margin: 0;
+
+		font-size: 80px;  
+		line-height: 100px;
+		color: rgb(254,254,254);
+	}
+
+	.app-bar-actions {
+		float: right;
+
+		margin: 20px 0;
+	}
+
+	.app-bar:after {
+		content: ' ';
+
+		display:block;
+		height: 0;
+		overflow: hidden;
+
+		clear: both;
+	}
+	
+	.app-bar button, .bottom-bar button {
+		border-color: rgba(254,254,254, 0.95);
+		color: rgba(254,254,254, 0.95);
+	}
+	
+	.app-bar button:hover, .bottom-bar button:hover, .app-bar button:focus, .bottom-bar button:focus {
+		background-color: rgba(254, 254, 254, 0.8);
+		color: rgba(100,100,100, 0.95);
+	}
+	.app-bar button:active, .bottom-bar button:active {
+		background-color: rgba(254, 254, 254, 0.95);
+	}
+
+	.search {
+		display: block;
+
+		padding-left: 16px;
+	}
+
+	button.menu {
+		display: none;
+	}
+
+	.bottom-bar {
+		display: -ms-inline-flexbox;
+		display: -webkit-inline-flex;
+		display: inline-flex;
+
+		width: auto;
+		height: auto;
+		-ms-flex-direction: row;
+		-webkit-flex-direction: row;
+		flex-direction: row;
+		
+		margin: 16px auto 0 auto;
+		right: auto;
+		left: auto;
+		background-color: rgba(0,0,0,0.6);
+	}
+}
+.navdrawer-container {
+	position: fixed;
+
+	top:0;
+	width: 250px;
+	height: 100%;
+
+	background-color: rgb(24,69,59);
+
+	color: #fefefe;
+	-webkit-transform: translate(-250px,0);
+	transform: translate(-250px,0);
+	z-index: 2;
+}
+
+.navdrawer-float-right {
+	bottom: 0;
+}
+
+.navdrawer-container.open {
+	-webkit-transform: translate(0,0);
+	transform: translate(0,0);
+}
+.navdrawer-container ul {
+	list-style-type: none;
+}
+.navdrawer-bg {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: black;
+	/** Unfortunately this is the best way
+	to get no paints in Chrome **/
+	opacity: 0.0000001;
+	z-index: 1;
+	pointer-events: none;
+}
+.navdrawer-bg.open {
+	opacity: 0.5;
+	pointer-events: auto;
+}
+.app-bar, .navdrawer-container {
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	transition: transform 0.3s ease-out;
+}
+.navdrawer-bg {
+	-webkit-transition: opacity 0.3s ease-out;
+	transition: opacity 0.3s ease-out;
+}
+
+.navdrawer-container ul li a {
+	display: block;
+
+	height: 60px;
+
+	padding: 0 20px;
+
+	line-height: 60px;
+
+	text-decoration: none;
+	color: rgb(200,200,200);
+}
+.navdrawer-container ul li a:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: rgb(254,254,254);
+}
+.navdrawer-container ul li a:focus {
+	background-color: rgba(255, 255, 255, 0.3);
+	outline: 0;
+}
+.navdrawer-container ul li a:active {
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+
+.navdrawer-container ul li a{
+	-webkit-transition: background-color 0.3s ease-out;
+	transition: background-color 0.3s ease-out;
+}
+
+.main-content {
+	margin-top: 60px;
+}
+
+@media all and (min-width: 1000px) {
+	.navdrawer-container {
+		position: relative;
+
+		width: 90%;
+		height: auto;
+		margin: 16px auto;
+
+		-webkit-transform: translate(0,0);
+		transform: translate(0,0);
+
+		-webkit-transition: none;
+		transition: none;
+		pointer-events: auto;
+		background-color: rgba(24,69,59,0.85);
+	}
+	
+	.navdrawer-container div {
+		display: -ms-inline-flexbox;
+		display: -webkit-inline-flex;
+		display: inline-flex;
+		height: auto;
+	}
+	.navdrawer-container ul {
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		-ms-flex-direction: row;
+		-webkit-flex-direction: row;
+		flex-direction: row;
+		
+		margin: 0 40px;
+	}
+	
+	.navdrawer-float-right {
+		position: relative;
+		bottom: auto;
+		float: right;
+	}
+
+	.navdrawer-container ul li {
+		border: none;
+	}
+	.navdrawer-bg, .navdrawer-bg.open {
+		opacity: 0;
+		pointer-events: none;
+	}
+	.navdrawer-container ul li a {
+		height: 40px;
+
+		padding: 0 10px;
+
+		line-height: 40px;
+	}
+	
+	.main-content {
+		min-height: 70em;
+		margin: 0 auto;
+		padding: 0 0 65px 0;
+		width: 90%;
+		/* background: -webkit-linear-gradient(transparent, rgb(254, 255, 247)); 
+		background: -o-linear-gradient(transparent, rgb(254, 255, 247)); 
+		background: -moz-linear-gradient(transparent, rgb(254, 255, 247)); 
+		background: linear-gradient(rgb(254, 255, 247), rgba(254, 255, 247, 0.6)); /* Standard syntax */
+	
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+	}
+}
+.promote-layer {
+	/*
+	This may promote the layer to a composited
+	layer.
+	Replace with will-change when available
+	#perfmatters
+	*/
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.label {
+	padding: 0.1em 3px;
+	border-radius: 0.2em;
+	font-size: 0.8em;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.label-default {
+	border: 1px solid;
+	border-color: rgb(200,200,200);
+	color: rgb(150,150,150);
+	background-color: rgba(150,150,150, 0.1);
+}
+
+.label-default:hover, .label-default:focus {
+	border-color: transparent;
+	background-color: rgba(150,150,150, 0.6);
+	color: white;
+}
+
+.label-default:active, .label-default a:active {
+	background-color: rgba(150,150,150, 0.2);
+}
+
+.label-default {
+	-webkit-transition: border 300ms ease-in,background 300ms ease-out;
+	transition: border 300ms ease-in,background 300ms ease-out;
+	-webkit-tap-highlight-color: transparent;
+}
+
+
+
+@media all and (min-width: 1920px){
+	body {
+		font-size: 2em;
+	}
+	.app-bar {
+		width: 1900px !important;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.navdrawer-container{
+		width: 1900px !important;
+		margin-left: auto;
+		margin-right: auto;
+		right: auto;
+		left: auto;
+	}
+	.main-container {
+		width: 1290px;
+	}
+	
+	.main-content{
+		background: none;
+		max-width: 1790px;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: auto;
+		padding-right: auto;
+	}
+	.main-container {
+		max-width: 1290px;
+	}
+	.side-bar {
+		max-width: 500px;
+	}
+}
+
+footer {
+	font-size: 0.8em;
+	width: 100%;
+	text-align: center;
+	color: #2f2f2f;
+}
+
+@media all and (min-width: 1000px){
+	footer {
+		color: #f2f2f2;
+	}
+}
+
+
+.btn {
+	outline: 0;
+	padding: 3px 10px;
+	text-decoration: none;
+	border: 0px transparent;
+	cursor: pointer;
+	font-size: 0.8em;
+}
+.btn-default {
+	-webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+	background: #bfbfbf;
+	color: #f5f5f5;
+}
+
+.btn-default:hover {
+  background: #b8b8b8;
+	color: #fff;
+}
+
+.btn-default:active {
+  background: #cfcfcf;
+	color: #fff;
+}
+
+.btn-primary {
+  color: #e0e0e0;
+  background: #3498db;
+}
+
+.btn-primary:hover {
+  background: #318cc4;
+}
+
+.btn-primary:active {
+  background: #39a8ed;
+}
+
+.btn {
+	-webkit-transition: background 300ms ease-in;
+	transition: background 300ms ease-in;
+	-webkit-tap-highlight-color: transparent;
+}
+
+input {
+	height: 40px;
+	padding: 11px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: none;
+	cursor: pointer;
+}
+
+.navdrawer-container .active {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.disabled{
+	color: #e2e2e;
+	background-color: rgba(0, 0, 0, 0.1);
+	pointer-events: none;
+}
+
+alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.alert .alert-link {
+  font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+.alert > p + p {
+  margin-top: 5px;
+}
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px;
+}
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.alert-success hr {
+  border-top-color: #c9e2b3;
+}
+.alert-success .alert-link {
+  color: #2b542c;
+}
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.alert-info hr {
+  border-top-color: #a6e1ec;
+}
+.alert-info .alert-link {
+  color: #245269;
+}
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+.alert-warning .alert-link {
+  color: #66512c;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}
+.alert-danger .alert-link {
+  color: #843534;
+}

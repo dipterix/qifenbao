@@ -5,16 +5,12 @@
 @import manage._
 @main(Messages("manage"), "1") {
     
-<div class="row">
-	<div class="row clearfix">
-		<div class="col-md-offset-1 col-md-8 column mobile-nopadding">
-			@if(localUser.hasPermission(Application.USER_PERMISSION_SECTION_MANAGER)){
+<div class="main-container">
+		@if(localUser.hasPermission(Application.USER_PERMISSION_SECTION_MANAGER)){
 				@_sectionManager(localUser)
-			}
-		</div>
-		<div class="col-md-3 column break-word">
-			@_sidebar(localUser)
-		</div>
-	</div>
+		}
+</div>
+<div class="side-bar">
+		@_sidebar(localUser)
 </div>
 }

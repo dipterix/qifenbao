@@ -1,4 +1,21 @@
 +function($){
+	var image_adjust = function(){
+		var images = $("article img");
+		images.each(function(){
+			if($(this).width() > 500) {
+				$(this).css({
+					"width": "100%",
+				});
+			}
+		});
+	}
+	$(document).ready(function(){
+		image_adjust();
+	})
+}(jQuery);
+
+
+/*+function($){
 		// get client dimension
 		var getWindowSize = function(){
 			if(typeof(sessionStorage) != "undefined"){
@@ -82,4 +99,4 @@
 			$(window).scroll(scroll_listener);
 			re_index();
 		})
-	}(jQuery);
+	}(jQuery);*/

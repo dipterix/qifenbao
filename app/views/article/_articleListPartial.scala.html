@@ -1,36 +1,40 @@
 @(pageinfo: String, aList: List[models.Article], page: Integer, more: String=null)
 
-<div class="article-list">
-@for(article <- aList){
 
-<div class="article-index">
-	<a href="@routes.Articles.viewArticle(article.id)" target="_blank">
-	<div class="article-thumb">
-		<!-- thumnail to be edited -->
-			<img src="@article.cover" />
-	</div>
-	</a>
-	<div class="article-bref break-word">
-		<h3><a href="@routes.Articles.viewArticle(article.id)" target="_blank">@article.title</a></h3>
-		@for(tag <- article.tags){
-			<a href="@routes.Profiles.tagsInfo(tag.name,1)" target="_blank" class="label label-default">@tag.alias</a>
-		}
-
-		@for(editor <- article.editors){
-			<a href="@routes.Profiles.editorInfo(editor.name)" target="_blank">@editor</a>
-		}
-		<span class="inline-preview">
-		@Html(article.preview)
-		</span>
+	<div class="article-list">
+	@for(article <- aList){
+	
+	<div class="article-index">
+		<a href="@routes.Articles.viewArticle(article.id)" target="_blank">
+		<div class="article-thumb">
+			<!-- thumnail to be edited -->
+				<img src="@article.cover" />
+		</div>
+		</a>
+		<div class="article-bref break-word">
+			<div class="article-author">
+				@for(editor <- article.editors){
+					<a href="@routes.Profiles.editorInfo(editor.name)">@editor</a>
+				}
+				发布于 @article.created
+			</div>
+			<div class="article-title">
+				<a href="@routes.Articles.viewArticle(article.id)">@article.title</a>
+			</div>
+			
+			<div class="article-tags">
+				@for(tag <- article.tags){
+					<a href="@routes.Profiles.tagsInfo(tag.name,1)" class="label label-default">@tag.alias</a>
+				}
+			</div>
+			<div class="article-intro">
+				@Html(article.preview)
+			</div>
+		</div>
 	</div>
 	
-	<div class="preview hidden">
-		@Html(article.content)
+	}
 	</div>
-</div>
-
-}
-</div>
 
 @page_info(pageStr:String, currentpage:Integer, lag:Integer) = @{
 	if(pageStr.equals("editor")){
@@ -41,10 +45,10 @@
 		routes.Profiles.tagsInfo(more, 1)
 	}
 }
-<div id="pagination-panel" data-info="@page">
+<!-- div id="pagination-panel" data-info="@page">
 	<ul class="pagination">
 		<li>
-			<a href="@page_info(pageinfo,1,0)">首页</a>
+			<a href="@page_info(pageinfo,1,0)">é¦–é¡µ</a>
 		</li>
 		<li class="pagination-dots">
 			<a>...</a>
@@ -65,4 +69,4 @@
 			<a>...</a>
 		</li>
 	</ul>
-</div>
+</div-->
