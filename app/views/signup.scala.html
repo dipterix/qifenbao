@@ -5,16 +5,41 @@
 
 @main(Messages("playauthenticate.signup.title"),"signup") {
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
-      <h1>@Messages("playauthenticate.signup.title")</h1>
-    </div>
-  </div>
 
-  <div id="signup" class="row">
-
-    <div class="col-xs-6 col-md-4">
-        @* Display proprietary login form *@
+<style>
+	.body-container {
+		min-height: initial;
+	}
+	.signup-panel {
+		width: 95%;
+		position: relative;
+		margin: 5px auto;
+		background-color: #FFF;
+	}
+	
+	@@media(min-width:992px){
+		.body-container {
+			background: transparent;
+			min-height: initial;
+		}
+		.signup-panel {
+			width: 500px;
+			position: relative;
+			margin: 16px auto;
+			background-color: #FFF;
+		}
+		.signup-content {
+			padding: 15px 30px;
+		}
+	}
+</style>
+	<div class="signup-panel">
+		<div class="container">
+			
+			<div id="signup" class="row signup-content">
+			<h1>注册</h1>
+	    
+	      @* Display proprietary login form *@
     	@helper.form(routes.Application.doSignup, 'class -> "form-horizontal", 'role -> "form") {
 
             @if(signupForm.hasGlobalErrors) {
@@ -33,15 +58,13 @@
              @_passwordPartial(signupForm)
 
             <button type="submit" class="btn btn-default">@Messages("playauthenticate.signup.now")</button>
-    	}
-    </div>
+    		}
+	    
+	
+	
+	  </div>
+		</div>
+	</div>
 
-    <div class="col-xs-6 col-md-4">
-        @Messages("playauthenticate.signup.oauth")
-        @* Display list of available providers *@
-        @_providerPartial(skipCurrent=false)
-    </div>
-
-  </div>
 
 }

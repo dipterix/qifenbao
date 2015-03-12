@@ -9,10 +9,10 @@
 }
 
 .home-brand {
-	min-height: 300px;
+	min-height: 120px;
 	max-height: 1000px;
 	margin-bottom: -50px;
-	height: 75vh;
+	height: 30vh;
 }
 
 .home-brand > .container{
@@ -52,17 +52,26 @@
 	width: 130px;
 }
 
-@media (max-width: 991px) {
-	.navbar-logo {
-		margin: 0 20px 0 0;
-		height: 50px;
-		width: 50px;
-	}
-}
-
 .footer{
 	background-color: rgba(24,69,59,0.85);
 	padding-top: 20px;
 	color: #adadad;
 	text-align:center;
 }
+
+.footer hr {
+	margin-bottom:0;
+}
+
+@media (max-width: 991px) {
+	.navbar-logo {
+		margin: 0 20px 0 0;
+		height: 50px;
+		width: 50px;
+	}
+	.footer{ 
+		background: transparent;
+	}
+}
+
+

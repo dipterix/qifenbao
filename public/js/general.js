@@ -31,11 +31,10 @@ Responsive setting
 		}
 	  })
 }();
-
 /*********************************************
 Stores client dimension info (client width & height)
 **********************************************
-function($){
++function($){
 	var getWindowSize = function(){
 		var myWidth = 0, myHeight = 0;
 		  if( typeof( window.innerWidth ) == 'number' ) {
@@ -69,7 +68,7 @@ function($){
 	
 	$(window).resize(store_dim);
 	$(document).ready(store_dim);
- }
+ }(jQuery);
 
  
  
@@ -77,7 +76,7 @@ function($){
 /*********************************************
 defined default actions of elements
 **********************************************
-function($){
++function($){
 	var preview_panel = $("#article-preview");
 	
 	// get client dimension
@@ -233,6 +232,6 @@ function($){
 			preview_panel.fadeOut();
 		});
 	});
-};
+}(jQuery);
 
 */

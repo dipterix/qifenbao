@@ -5,23 +5,25 @@
 
 @import manage._
 @main(Messages("navigation.admin"), "admin") {
-<div class="main-container">
-		@for(section <- sections){
+<div class="row">
+	<div class="row clearfix">
+		<div class="col-md-offset-1 col-md-10 column mobile-nopadding">
+			@for(section <- sections){
 				<blockquote>
 					<h3>
-						<small>Name </small>
+						<small>版区： </small>
 						<a href="@routes.Profiles.sectionsInfo(section.name)" target="_blank">
 							<strong>@section.alias</strong> (@section.name)
 						</a>
 					</h3>
 					<p>
-						Editor<br />
+						编辑：<br />
 						<ul class="nav nav-pills">
 						@for(editor <- section.getEditors()){
 							<li>
 								<a href="@routes.Profiles.editorInfo(editor.name)" target="_blank"> 
 									<span class="badge pull-right">@if(editor.hasPermission(Application.USER_PERMISSION_SECTION_MANAGER) && !editor.hasPermission(Application.USER_PERMISSION_ADMIN)){
-										Manager
+										版区鹳狸猿
 									}</span> @editor.name
 								</a>
 							</li>
@@ -30,13 +32,15 @@
 					</p>
 				</blockquote>
 			}
-			<hr />
+			
+			<div class="hline"></div>
 			
 			<div class="col-md-4">
-				<h4>鹳狸猿工具：</h4><br />
+				鹳狸猿工具：
+				<h4>管理员工具</h4><br />
 				<form role="form" method="POST" action="@routes.AdminTools.sectionCreate">
 					<div class="form-group">
-						<label for="section">添加版面： (英文字母) </label>
+						<label for="section">添加版面： (英文字母)</label>
 						<input type="text" class="form-control" id="section" name="section" />
 					</div> 
 					<div class="form-group">
@@ -49,9 +53,7 @@
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 			</div>
+		</div>
+	</div>
 </div>
-<div class="side-bar">
-		@_sidebar(localUser)
-</div>
-
 }

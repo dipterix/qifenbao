@@ -15,6 +15,7 @@ body {
 	background-color: rgb(254, 255, 247);
 	box-sizing: border-box;
 	/*overflow: hidden;*/
+	
 }
 a {
 	text-decoration: none;
@@ -38,10 +39,11 @@ a {
 	left: 0;
 	z-index:2;
 	background-color: rgba(240,240,240,0.6);
+	border: 0px transparent;
 }
 .app-bar.open {
-	-webkit-transform: translate(250px,0);
-	transform: translate(250px,0);
+	-webkit-transform: translate(20em,0);
+	transform: translate(20em,0);
 }
 .app-bar .logo {
 	-ms-flex: 1;
@@ -81,7 +83,7 @@ a {
 	border-style: solid;
 	border-radius: 100%;
 	border-color: rgb(200, 200, 200);
-	padding: 8px;
+	padding: 4px 8px 8px 8px;
 	margin: 8px;
 	-webkit-transition: border 300ms ease-in,background 300ms ease-in;
 	transition: border 300ms ease-in,background 300ms ease-in;
@@ -161,10 +163,15 @@ a {
 	right: 0;
 	background-color: rgba(240,240,240,0.6);
 }
-@media all and (min-width: 1000px) {
+.navdrawer-bg, .navdrawer-bg.open{
+		opacity: 0;
+		pointer-events: none;
+	}
+
+@media all and (min-width: 992px) {
 
 	body {
-		padding: 16px 16px 0 16px;;
+
 		background-image: url("../images/brand-home.jpg")
 	}
 
@@ -174,7 +181,7 @@ a {
 		position: relative;
 		height: 100px;
 
-		padding: 0 16px;
+		padding: 16px 16px 6px  16px;
 		margin-bottom: 16px;
 
 		box-sizing: border-box;
@@ -255,50 +262,11 @@ a {
 		left: auto;
 		background-color: rgba(0,0,0,0.6);
 	}
-}
-.navdrawer-container {
-	position: fixed;
-
-	top:0;
-	width: 250px;
-	height: 100%;
-
-	background-color: rgb(24,69,59);
-
-	color: #fefefe;
-	-webkit-transform: translate(-250px,0);
-	transform: translate(-250px,0);
-	z-index: 2;
+	#home-nav {
+		
+	}
 }
 
-.navdrawer-float-right {
-	bottom: 0;
-}
-
-.navdrawer-container.open {
-	-webkit-transform: translate(0,0);
-	transform: translate(0,0);
-}
-.navdrawer-container ul {
-	list-style-type: none;
-}
-.navdrawer-bg {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	background-color: black;
-	/** Unfortunately this is the best way
-	to get no paints in Chrome **/
-	opacity: 0.0000001;
-	z-index: 1;
-	pointer-events: none;
-}
-.navdrawer-bg.open {
-	opacity: 0.5;
-	pointer-events: auto;
-}
 .app-bar, .navdrawer-container {
 	-webkit-transition: -webkit-transform 0.3s ease-out;
 	transition: transform 0.3s ease-out;
@@ -308,112 +276,11 @@ a {
 	transition: opacity 0.3s ease-out;
 }
 
-.navdrawer-container ul li a {
-	display: block;
-
-	height: 60px;
-
-	padding: 0 20px;
-
-	line-height: 60px;
-
-	text-decoration: none;
-	color: rgb(200,200,200);
-}
-.navdrawer-container ul li a:hover {
-	background-color: rgba(255, 255, 255, 0.2);
-	color: rgb(254,254,254);
-}
-.navdrawer-container ul li a:focus {
-	background-color: rgba(255, 255, 255, 0.3);
-	outline: 0;
-}
-.navdrawer-container ul li a:active {
-	background-color: rgba(255, 255, 255, 0.4);
-}
-
-
-.navdrawer-container ul li a{
-	-webkit-transition: background-color 0.3s ease-out;
-	transition: background-color 0.3s ease-out;
-}
-
 .main-content {
 	margin-top: 60px;
 }
 
-@media all and (min-width: 1000px) {
-	.navdrawer-container {
-		position: relative;
 
-		width: 90%;
-		height: auto;
-		margin: 16px auto;
-
-		-webkit-transform: translate(0,0);
-		transform: translate(0,0);
-
-		-webkit-transition: none;
-		transition: none;
-		pointer-events: auto;
-		background-color: rgba(24,69,59,0.85);
-	}
-	
-	.navdrawer-container div {
-		display: -ms-inline-flexbox;
-		display: -webkit-inline-flex;
-		display: inline-flex;
-		height: auto;
-	}
-	.navdrawer-container ul {
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-
-		-ms-flex-direction: row;
-		-webkit-flex-direction: row;
-		flex-direction: row;
-		
-		margin: 0 40px;
-	}
-	
-	.navdrawer-float-right {
-		position: relative;
-		bottom: auto;
-		float: right;
-	}
-
-	.navdrawer-container ul li {
-		border: none;
-	}
-	.navdrawer-bg, .navdrawer-bg.open {
-		opacity: 0;
-		pointer-events: none;
-	}
-	.navdrawer-container ul li a {
-		height: 40px;
-
-		padding: 0 10px;
-
-		line-height: 40px;
-	}
-	
-	.main-content {
-		min-height: 70em;
-		margin: 0 auto;
-		padding: 0 0 65px 0;
-		width: 90%;
-		/* background: -webkit-linear-gradient(transparent, rgb(254, 255, 247)); 
-		background: -o-linear-gradient(transparent, rgb(254, 255, 247)); 
-		background: -moz-linear-gradient(transparent, rgb(254, 255, 247)); 
-		background: linear-gradient(rgb(254, 255, 247), rgba(254, 255, 247, 0.6)); /* Standard syntax */
-	
-		display: -webkit-flex;
-		display: flex;
-		-webkit-flex-flow: row wrap;
-		flex-flow: row wrap;
-	}
-}
 .promote-layer {
 	/*
 	This may promote the layer to a composited
@@ -424,6 +291,112 @@ a {
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
+
+/* BEGIN for nav bar */
+
+@media(max-width: 991px){
+	.navdrawer-bg {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-color: black;
+		/** Unfortunately this is the best way
+		to get no paints in Chrome **/
+		opacity: 0.0000001;
+		z-index: 1;
+		pointer-events: none;
+	}
+	.navdrawer-bg.open {
+		opacity: 0.5;
+		pointer-events: auto;
+	}
+	.navdrawer-container {
+		position: fixed;
+
+		bottom:0;
+		width: 20em;
+		height: 100%;
+		margin:0;
+		left:0;
+		background-color: rgb(24,69,59);
+
+		color: #fefefe;
+		-webkit-transform: translate(-20em,0);
+		transform: translate(-20em,0);
+		z-index: 2;
+		overflow: hidden;
+	}
+	
+	.navdrawer-container ul {
+		list-style-type: none;
+		padding-left:0;
+		margin: 15px 0 !important;
+		width: 17em;
+		float: right !important;
+		
+	}
+	
+	nav ul li {
+		width: 17em !important;
+		float: left !important;
+	}
+	.navdrawer-container.open {
+		-webkit-transform: translate(0,0);
+		transform: translate(0,0);
+	}
+	.navbar-right {
+		float: left !important;
+		width: 17em !important;
+	}
+	
+	.navdrawer-container ul li a:hover {
+		background-color: rgba(255, 255, 255, 0.2) !important;
+		color: rgb(254,254,254);
+	}
+	.navdrawer-container ul li a:focus {
+		background-color: rgba(255, 255, 255, 0.3) !important;
+		outline: 0;
+	}
+	.navdrawer-container ul .active a, .navdrawer-container ul li a:active {
+		background-color: rgba(255, 255, 255, 0.4) !important;
+	}
+	
+	.navdrawer-container ul li a{
+		-webkit-transition: background-color 0.3s ease-out;
+		transition: background-color 0.3s ease-out;
+	}
+}
+
+@media (max-width: 345px){
+	.app-bar.open {
+		-webkit-transform: translate(10em,0);
+		transform: translate(10em,0);
+	}
+	.navdrawer-container {
+		width: 10em;
+		-webkit-transform: translate(-10em,0);
+		transform: translate(-10em,0);
+	}
+	.navdrawer-container ul {
+		width: 9em;	
+	}
+	
+	nav ul li {
+		width: 9em !important;
+	}
+	.navbar-right {
+		width: 9em !important;
+	}
+}
+
+
+
+
+/* END for nav bar */
+
+
 
 .label {
 	padding: 0.1em 3px;
@@ -458,42 +431,6 @@ a {
 
 
 
-@media all and (min-width: 1920px){
-	body {
-		font-size: 2em;
-	}
-	.app-bar {
-		width: 1900px !important;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.navdrawer-container{
-		width: 1900px !important;
-		margin-left: auto;
-		margin-right: auto;
-		right: auto;
-		left: auto;
-	}
-	.main-container {
-		width: 1290px;
-	}
-	
-	.main-content{
-		background: none;
-		max-width: 1790px;
-		margin-left: auto;
-		margin-right: auto;
-		padding-left: auto;
-		padding-right: auto;
-	}
-	.main-container {
-		max-width: 1290px;
-	}
-	.side-bar {
-		max-width: 500px;
-	}
-}
-
 footer {
 	font-size: 0.8em;
 	width: 100%;
@@ -501,155 +438,19 @@ footer {
 	color: #2f2f2f;
 }
 
-@media all and (min-width: 1000px){
+@media all and (min-width: 992px){
 	footer {
 		color: #f2f2f2;
 	}
 }
 
-
-.btn {
-	outline: 0;
-	padding: 3px 10px;
-	text-decoration: none;
-	border: 0px transparent;
-	cursor: pointer;
-	font-size: 0.8em;
-}
-.btn-default {
-	-webkit-border-radius: 5;
-  -moz-border-radius: 5;
-  border-radius: 5px;
-	background: #bfbfbf;
-	color: #f5f5f5;
+.body-container {
+	width:auto;
 }
 
-.btn-default:hover {
-  background: #b8b8b8;
-	color: #fff;
-}
-
-.btn-default:active {
-  background: #cfcfcf;
-	color: #fff;
-}
-
-.btn-primary {
-  color: #e0e0e0;
-  background: #3498db;
-}
-
-.btn-primary:hover {
-  background: #318cc4;
-}
-
-.btn-primary:active {
-  background: #39a8ed;
-}
-
-.btn {
-	-webkit-transition: background 300ms ease-in;
-	transition: background 300ms ease-in;
-	-webkit-tap-highlight-color: transparent;
-}
-
-input {
-	height: 40px;
-	padding: 11px;
-	margin: 8px 0;
-	box-sizing: border-box;
-	border: none;
-	cursor: pointer;
-}
-
-.navdrawer-container .active {
-	background-color: rgba(0, 0, 0, 0.1);
-}
-
-.disabled{
-	color: #e2e2e;
-	background-color: rgba(0, 0, 0, 0.1);
-	pointer-events: none;
-}
-
-alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-.alert h4 {
-  margin-top: 0;
-  color: inherit;
-}
-.alert .alert-link {
-  font-weight: bold;
-}
-.alert > p,
-.alert > ul {
-  margin-bottom: 0;
-}
-.alert > p + p {
-  margin-top: 5px;
-}
-.alert-dismissable,
-.alert-dismissible {
-  padding-right: 35px;
-}
-.alert-dismissable .close,
-.alert-dismissible .close {
-  position: relative;
-  top: -2px;
-  right: -21px;
-  color: inherit;
-}
-.alert-success {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-}
-.alert-success hr {
-  border-top-color: #c9e2b3;
-}
-.alert-success .alert-link {
-  color: #2b542c;
-}
-.alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-}
-.alert-info hr {
-  border-top-color: #a6e1ec;
-}
-.alert-info .alert-link {
-  color: #245269;
-}
-.alert-warning {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border-color: #faebcc;
-}
-.alert-warning hr {
-  border-top-color: #f7e1b5;
-}
-.alert-warning .alert-link {
-  color: #66512c;
-}
-.alert-danger {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
-}
-.alert-danger hr {
-  border-top-color: #e4b9c0;
-}
-.alert-danger .alert-link {
-  color: #843534;
+@media all and (max-width: 991px){
+	.body-container {
+		margin: 60px 15px 0 15px;
+		padding-top: 0;
+	}
 }

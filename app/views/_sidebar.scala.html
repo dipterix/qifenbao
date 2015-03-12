@@ -1,19 +1,25 @@
 @(localUser: models.User = User.temporaryUser(null,null))
+@if(localUser.hasPermission(Application.USER_PERMISSION_EDITOR)){
 <div style="margin-bottom:100px;">
 	<h3><small>What you might like to do:</small></h3><br />
 	<ul>
 		@if(localUser.hasPermission(Application.USER_PERMISSION_SECTION_MANAGER)){
 		<li>
-			<a href="@routes.Manage.index"><span>版区管理</span></a>
+			<a href="@routes.Manage.index"><span>版块编辑</span></a>
 		</li>
 		}
 		<li>
 			<a href="@routes.Manage.editorPage(1)"><span>文章管理</span></a>
 		</li>
 		<li>
-			<a href="@routes.Articles.newArticle"><span>新文章</span></a>
+			<a href="@routes.Articles.newArticle"><span>新建文章</span></a>
 		</li>
 	</ul>
 </div>
-			<!-- ads here -->
-@_ads()
+}
+
+<div style="padding: 1em">
+<ul>
+<li>THIS</li>
+</ul>
+</div>

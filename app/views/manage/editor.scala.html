@@ -5,10 +5,20 @@ page: Integer)
 @import manage._
 @import article._
 @main(Messages("navigation.editor"), "editor") {
-<div class="main-container">
-		@_articleListPartial("editor", aList, page)
-</div>
-<div class="side-bar">
-		@_sidebar(localUser)
+<div class="row">
+	<div class="row clearfix">
+		<div class="col-md-offset-1 col-md-8 column mobile-nopadding">
+			@_articleListPartial("editor", aList, page)
+		</div>
+		<div class="col-md-3 column break-word">
+			<div class="sidebar">
+				@_sidebar(localUser)
+			</div>
+			<!-- sidebar here -->
+			<div class="ads mobile-hide">
+				@_ads()
+			</div>
+		</div>
+	</div>
 </div>
 }

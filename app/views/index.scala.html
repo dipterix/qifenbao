@@ -3,15 +3,26 @@
 @import article._
 @main(Messages("home.title")) {
 
-<div class="main-container">
-	@_articleListPartial("index", aList, page)
-</div>
-	<div class="side-bar">
-				<!-- ads here -->
-				@_ads()
-	</div>
+
+<div class="row">
+				<div class="row clearfix">
+					<div class="col-md-offset-1 col-md-8 column mobile-nopadding">
+						@_articleListPartial("index", aList, page)
+			    </div>
+			    <div class="col-md-3 row break-word">
+						<div class="sidebar">
+							@_sidebar()
+						</div>
+						<!-- sidebar here -->
+						<div class="ads mobile-hide">
+							@_ads()
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
 			
 			
-	</div>
-</div>
+
 }

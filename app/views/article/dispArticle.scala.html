@@ -2,72 +2,64 @@
 
 @main("Article viewer") {
 
-<div class="main-container">
-	<div class="article-content break-word">
-		<article>
-			<h1>
-				@article.title
-			</h1><br />
-			<small>@article.editors.get(0) @@ @article.created</small><br>
-			<small>
-				@for(tg <- article.tags){
-					<a href="@routes.Profiles.tagsInfo(tg.name,1)" class="btn btn-default"><span>@tg.alias</span></a>
+<div class="row clearfix">
+	<div class="col-md-offset-1 col-md-7 column mobile-nopadding">
+		<div class="article-content break-word">
+			<article>
+				<div class="page-header">
+					<h3>
+					 	@article.title
+					<br />
+						<small>@article.editors.get(0) @@ @article.created</small><br>
+					</h3>
+					@for(tg <- article.tags){
+					<a href="@routes.Profiles.tagsInfo(tg.name,1)" class="btn"><span>@tg.alias</span></a>
 					}
-			</small><br>
-			<hr >
-			<p>
-				@Html(article.content)
-			</p>
-		</article>
-		<aside>
-			<div class="comment-header">
-				Total Comments: 10
-			</div>
-			
-			@if(article.comments.size() == 0){
-				<div class="comment" style="text-align:center;padding-top:2em">
-						No comments, come, give some words!
 				</div>
-			}
-			@for(comm <- article.comments){
-				<div class="comment">
-					<div class="comment-author">
-						<Strong>@comm.name</strong>
-						<br />
-						<small>(<span class="comment-rank">1</span>L)</small> @comm.created
-					</div>
-					<div class="comment-content">
-						@comm.content
-					</div>
-					<div class="comment-ooxx">OO(@comm.oo)/XX(@comm.xx)</div>
+				<p>
+					@Html(article.content)
+				</p>
+			</article>
+			<aside>
+				<div class="comment-header">
+					Total Comments: 10
 				</div>
-				<hr />
-			}
+				
+				@for(comm <- article.comments){
+					<div class="comment-content row">
+						<div class="col-xs-4">
+							<Strong>@comm.name</strong>
+							<br />
+							<small>(<span class="comment-rank">1</span>L)</small> @comm.created
+						</div>
+						<div class="col-xs-8">
+							@comm.content
+						</div>
+						<div class="comment-ooxx">OO(@comm.oo)/XX(@comm.xx)</div>
+					</div>
+				}
 
-			<div class="comment-new">
-				@helper.form(routes.Articles.postComments(article.id), 'class -> "form-horizontal", 'role -> "form") {
-	
-	
-					<input type="email" name="email" class='@("hidden".when(localUser != null && localUser.email!=null))' 
-						value=@if(localUser != null){"@localUser.email"}else{""} required 
-						placeholder="Your Email..." />
-					<input type="text" name="name" value=@if(localUser != null){"@localUser.name"}else{""} 
-							required placeholder="Your Lovely Nickname..." />
-					<br /> Say Something...<br />
-					<textarea type="text" name="content" required rows="5"></textarea><br />
-					<button type="submit" class="btn btn-default">Submit</button>
-			    }
-			</div>
-			
-		</aside>
+				<div>
+					@helper.form(routes.Articles.postComments(article.id), 'class -> "form-horizontal", 'role -> "form") {
+		
+						<input type="email" name="email" class='@("hidden".when(localUser != null))' 
+							value=@if(localUser != null){"@localUser.email"}else{""} required />
+						<input type="text" name="name" value=@if(localUser != null){"@localUser.name"}else{""} required />
+						<input type="text" name="content" required />
+						<button type="submit" class="btn btn-default">Submit</button>
+				    }
+				</div>
+				
+			</aside>
+		</div>
 	</div>
-</div>
 	
 	
-<div class="side-bar">
+	
+	<div class="col-md-3 column mobile-hide">
 		@if(localUser.hasPermission(Application.USER_PERMISSION_EDITOR)){
 		<p class="editor-panel">
-			Article Information: 
+			" 编辑信息：
 			<address>
 				<small>
 					Permission: @article.permissons<br />
@@ -81,13 +73,13 @@
 					<br />
 				</small>
 			</address>
-			<strong>(<a href="@routes.Articles.editArticle(article.id)">Edit This Article</a>)</strong>
+			(<a href="@routes.Articles.editArticle(article.id)">编辑</a>)
 		</p>
 		}
 		@_ads()
 		
 	</div>
-
+</div>
 
 
 }
