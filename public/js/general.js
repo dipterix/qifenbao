@@ -1,6 +1,77 @@
 /*
 	General JS for all sites
 */
+
++function($){
+	$(document).ready(function(){
+		$(".navdrawer-bg").removeClass("open");
+		$(".body-container").removeClass("open");
+	})
+}(jQuery);
+
+/*********************************************
+Bottom Bar action
+**********************************************/
++function($){
+	var page_info = function(elem, pageStr, page, lag){
+		var newpage  = page+lag;
+		if(newpage < 1){
+			newpage = 1;
+		}
+		var newUrl = "#";
+		
+		if(pageStr == 'editor'){
+			newUrl = '/editorIndex/' + newpage;
+		} else if(pageStr == 'index'){
+			newUrl = '/page/' + newpage;
+		} else if(pageStr == 'tag'){
+			newUrl = '/tags/'+more+'/'+newpage;
+		}
+		window.open(newUrl, '_self');
+	}
+	
+	
+		$(".go-top").click(function(){
+			$("body,html").animate(
+				{"scrollTop": '0'}, 500
+			);
+		});
+		
+		if(typeof(bottom_bar_info) != "undefined"){
+			var page = bottom_bar_info.currentpage;
+			var pageStr = bottom_bar_info.info;
+			var more = bottom_bar_info.more;
+			$('.go-prev').click(function(){
+				page_info(this, pageStr, page, -1);
+			});
+			$('.go-next').click(function(){
+				page_info(this, pageStr, page, 1);
+			});
+			if(page == 1){
+				$('.go-prev').addClass("hidden");
+			}
+		} else{
+			$('.go-prev').addClass("hidden");
+			$('.go-next').addClass("hidden");
+		}
+	
+	
+	
+}(jQuery);
+
++function($){
+	$('a').click(function(e) { 
+		var link = $(this).attr("href");
+		if(typeof(link) != "undefined"){
+			e.preventDefault();
+			$(".navdrawer-bg-waiting").removeClass("hidden");
+			$(".navdrawer-bg").addClass("open");
+			$(".body-container").addClass("open");
+			window.open(link, "_self");
+		}
+  });
+}(jQuery);
+
 /*********************************************
 Responsive setting
 **********************************************/
@@ -31,56 +102,6 @@ Responsive setting
 		}
 	  })
 }();
-
-/*********************************************
-Bottom Bar action
-**********************************************/
-+function($){
-	var page_info = function(elem, pageStr, page, lag){
-		var newpage  = page+lag;
-		if(newpage < 1){
-			newpage = 1;
-		}
-		var newUrl = "#";
-		
-		if(pageStr == 'editor'){
-			newUrl = '/editorIndex/' + newpage;
-		} else if(pageStr == 'index'){
-			newUrl = '/page/' + newpage;
-		} else if(pageStr == 'tag'){
-			newUrl = '/tags/'+more+'/1';
-		}
-		window.open(newUrl, '_self');
-	}
-	
-	$(document).ready(function(){
-		$(".go-top").click(function(){
-			$("body,html").animate(
-				{"scrollTop": '0'}, 500
-			);
-		});
-		
-		if(typeof(bottom_bar_info) != "undefined"){
-			var page = bottom_bar_info.currentpage;
-			var pageStr = bottom_bar_info.info;
-			var more = bottom_bar_info.more;
-			$('.go-prev').click(function(){
-				page_info(this, pageStr, page, -1);
-			});
-			$('.go-next').click(function(){
-				page_info(this, pageStr, page, 1);
-			});
-			if(page == 1){
-				$('.go-prev').addClass("hidden");
-			}
-		} else{
-			$('.go-prev').addClass("hidden");
-			$('.go-next').addClass("hidden");
-		}
-	})
-	
-	
-}(jQuery);
 
 
 

@@ -110,9 +110,11 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 
-	<div class="navdrawer-bg"></div>
+	<div class="navdrawer-bg open">
+		<div class="navdrawer-bg-waiting hidden"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+	</div>
 	<!-- Content -->
-	<div class="body-container">
+	<div class="body-container open">
 	<div class="container">
     	@if(flash.contains(Application.FLASH_ERROR_KEY)) {
         	<div class="alert alert-danger" role="alert">
