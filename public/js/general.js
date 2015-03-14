@@ -36,17 +36,6 @@ Responsive setting
 Bottom Bar action
 **********************************************/
 +function($){
-	$(".go-top").click(function(){
-		$("body,html").animate(
-			{"scrollTop": '0'}, 500
-		);
-	});
-	
-	var page = bottom_bar_info.currentpage;
-	var pageStr = bottom_bar_info.info;
-	var more = bottom_bar_info.more;
-	
-	
 	var page_info = function(elem, pageStr, page, lag){
 		var newpage  = page+lag;
 		if(newpage < 1){
@@ -63,20 +52,34 @@ Bottom Bar action
 		}
 		window.open(newUrl, '_self');
 	}
-	if(typeof(bottom_bar_info) != undefined){
-		$('.go-prev').click(function(){
-			page_info(this, pageStr, page, -1);
+	
+	$(document).ready(function(){
+		$(".go-top").click(function(){
+			$("body,html").animate(
+				{"scrollTop": '0'}, 500
+			);
 		});
-		$('.go-next').click(function(){
-			page_info(this, pageStr, page, 1);
-		});
-		if(page == 1){
+		
+		if(typeof(bottom_bar_info) != "undefined"){
+			var page = bottom_bar_info.currentpage;
+			var pageStr = bottom_bar_info.info;
+			var more = bottom_bar_info.more;
+			$('.go-prev').click(function(){
+				page_info(this, pageStr, page, -1);
+			});
+			$('.go-next').click(function(){
+				page_info(this, pageStr, page, 1);
+			});
+			if(page == 1){
+				$('.go-prev').addClass("hidden");
+			}
+		} else{
 			$('.go-prev').addClass("hidden");
+			$('.go-next').addClass("hidden");
 		}
-	} else{
-		$('.go-prev').addClass("hidden");
-		$('.go-next').addClass("hidden");
-	}
+	})
+	
+	
 }(jQuery);
 
 
