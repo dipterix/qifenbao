@@ -193,11 +193,13 @@ article {
   color: white;
   background-color: rgba(0,0,0,0.6);
 	pointer-events: none;
+	border: 0px transparent;
 }
 
 .ads-unit-img {
 	height: 100%;
 	opacity: 1;
+	border: 0px transparent;
 }
 
 .ads-unit-img:hover {
@@ -209,7 +211,8 @@ article {
 	width: 9em;
 	height:9em;
 	overflow:hidden;
-	margin: 0.5em auto;
+	margin: 0.3em auto;
+	border: 0px transparent;
 }
 
 .ads-unit-bg, .ads-unit-img {
