@@ -169,14 +169,11 @@
 }
 
 @media(max-width: 991px){
-	.article-content {
-		margin: 0 -14px;
-	}
 	.article-content article {
 		margin: 15px 0;
 	}
 }
 
 article {
-	
+	text-align: justify;
 }
