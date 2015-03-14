@@ -31,6 +31,57 @@ Responsive setting
 		}
 	  })
 }();
+
+/*********************************************
+Bottom Bar action
+**********************************************/
++function($){
+	$(".go-top").click(function(){
+		$("body,html").animate(
+			{"scrollTop": '0'}, 500
+		);
+	});
+	
+	var page = bottom_bar_info.currentpage;
+	var pageStr = bottom_bar_info.info;
+	var more = bottom_bar_info.more;
+	
+	
+	var page_info = function(elem, pageStr, page, lag){
+		var newpage  = page+lag;
+		if(newpage < 1){
+			newpage = 1;
+		}
+		var newUrl = "#";
+		
+		if(pageStr == 'editor'){
+			newUrl = '/editorIndex/' + newpage;
+		} else if(pageStr == 'index'){
+			newUrl = '/page/' + newpage;
+		} else if(pageStr == 'tag'){
+			newUrl = '/tags/'+more+'/1';
+		}
+		window.open(newUrl, '_self');
+	}
+	if(typeof(bottom_bar_info) != undefined){
+		$('.go-prev').click(function(){
+			page_info(this, pageStr, page, -1);
+		});
+		$('.go-next').click(function(){
+			page_info(this, pageStr, page, 1);
+		});
+		if(page == 1){
+			$('.go-prev').addClass("hidden");
+		}
+	} else{
+		$('.go-prev').addClass("hidden");
+		$('.go-next').addClass("hidden");
+	}
+}(jQuery);
+
+
+
+
 /*********************************************
 Stores client dimension info (client width & height)
 **********************************************

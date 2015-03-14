@@ -35,12 +35,16 @@
 </div>
 
 @page_info(pageStr:String, currentpage:Integer, lag:Integer) = @{
-	if(pageStr.equals("editor")){
-		routes.Manage.editorPage(currentpage+lag)
-	}else if(pageStr.equals("index")){
-		routes.Application.indexPage(currentpage+lag)
+	val newpage  = currentpage+lag;
+	newpage
+	if(pageStr.equals("editor") || newpage > 0){
+		routes.Manage.editorPage(newpage)
+	}else if(pageStr.equals("index") || newpage > 0){
+		routes.Application.indexPage(newpage)
 	}else if(pageStr.equals("tag")){
 		routes.Profiles.tagsInfo(more, 1)
+	}else{
+		'#'
 	}
 }
 <div id="pagination-panel" class="pagination-panel" data-info="@page">
@@ -59,3 +63,8 @@
 		</li>
 	</ul>
 </div>
+
+<script>
+	var bottom_bar_info = {"info":'@pageinfo', "currentpage":@page, "more":'@more'}
+</script>
+

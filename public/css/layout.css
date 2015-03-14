@@ -450,7 +450,15 @@ footer {
 
 @media all and (max-width: 991px){
 	.body-container {
-		margin: 60px 15px 0 15px;
+		margin: 60px 0 0 0;
 		padding-top: 0;
+	}
+	.row {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.container {
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
